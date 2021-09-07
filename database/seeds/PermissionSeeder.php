@@ -24,11 +24,13 @@ class PermissionSeeder extends Seeder
             Permission::firstOrCreate(['name' => $permission]);
         }
 
+        $roleSuperAdmin = Role::create(['name' => 'superadmin']);
         $roleAdmin = Role::create(['name' => 'admin']);
         $roleManagement = Role::create(['name' => 'management']);
         $roleStaff = Role::create(['name' => 'staff']);
         $roleAccounting = Role::create(['name' => 'accounting']);
 
+        $roleSuperAdmin->syncPermissions(Permission::all());
         $roleAdmin->syncPermissions(Permission::all());
         $roleManagement->syncPermissions(Permission::all());
         $roleStaff->syncPermissions(Permission::where('name', 'like', '%company%')->get());

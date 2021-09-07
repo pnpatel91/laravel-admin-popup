@@ -12,6 +12,15 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $user = new User();
+        $user->name = 'Super Admin';
+        $user->email = 'superadmin@gmail.com';
+        $user->position = 'Owner';
+        $user->biography = '<p>Super Admin Biography</p>';
+        $user->dateOfBirth = '2003-04-30';
+        $user->password = bcrypt('password'); // password
+        $user->save();
+        $user->assignRole('superadmin');
 
         $user = new User();
         $user->name = 'Admin';
@@ -52,6 +61,16 @@ class UserSeeder extends Seeder
         $user->password = bcrypt('password'); // password
         $user->save();
         $user->assignRole('accounting');
+
+        $user = new User();
+        $user->name = 'Staff Member';
+        $user->email = 'staff2@gmail.com';
+        $user->position = 'Staff';
+        $user->biography = '<p>Staff&nbsp;Biography</p>';
+        $user->dateOfBirth = '2003-04-30';
+        $user->password = bcrypt('password'); // password
+        $user->save();
+        $user->assignRole('staff');
 
     }
 }
